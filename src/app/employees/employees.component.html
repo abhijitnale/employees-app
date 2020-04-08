@@ -1,0 +1,30 @@
+<div class="container py-4">
+    <div class="table-responsive-sm">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>Postal Code</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employeesArray;trackBy: trackByFn;">
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.phone | mobile}}</td>
+                    <td>{{employee.address?.city}}</td>
+                    <td>{{employee.address?.address_line1}}</td>
+                    <td>{{employee.address?.address_line2}}</td>
+                    <td>{{employee.address?.postal_code}}</td>
+                    <td>Edit</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

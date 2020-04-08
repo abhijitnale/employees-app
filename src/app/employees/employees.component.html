@@ -1,4 +1,7 @@
 <div class="container py-4">
+    <div class="my-2">
+        <input type="text" name="term" placeholder="Search by name or city" (input)="search($event)"/>
+    </div>
     <div class="table-responsive-sm">
         <table class="table table-bordered">
             <thead>

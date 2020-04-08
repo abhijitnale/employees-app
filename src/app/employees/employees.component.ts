@@ -9,7 +9,9 @@ import { Employee } from './model/employee';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit, OnDestroy {
+  employeesArrayOriginal: Employee[] = [];
   employeesArray: Employee[] = [];
+
   obsEmployess: Observable<Employee[]>;
   subEmployess: Subscription;
 
@@ -20,11 +22,25 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subEmployess = this.obsEmployess.subscribe(employees => {
       this.employeesArray = employees;
+      this.employeesArrayOriginal = employees;
     })
   }
 
   trackByFn(index, item) {
     return item.id;
+  }
+
+  search(event) {
+    let term = event.target.value;
+    if (term && this.employeesArrayOriginal) {
+      this.employeesArray = this.employeesArrayOriginal.filter(emp =>
+        {
+          return (emp.name ? emp.name.toLowerCase().substr(0, term.length) == term.toLowerCase() : false ) || (emp.address && emp.address.city ? emp.address.city.substr(0, term.length).toLowerCase() == term.toLowerCase() : false)
+        })
+    }
+    else {
+      this.employeesArray = this.employeesArrayOriginal;
+    }
   }
 
   ngOnDestroy() {

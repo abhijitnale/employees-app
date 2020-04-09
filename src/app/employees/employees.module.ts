@@ -4,6 +4,8 @@ import { EmployeesComponent } from './employees.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { MobilePipe } from '../pipes/mobile.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
+import { OnlyNumber } from '../directives/only-numbers.directive';
 
 
 
@@ -11,11 +13,13 @@ import { MobilePipe } from '../pipes/mobile.pipe';
   declarations: [
     AddEmployeeComponent,
     EmployeesComponent,
-    MobilePipe
+    MobilePipe,
+    OnlyNumber
   ],
   imports: [
     CommonModule,
-    EmployeesRoutingModule
+    ReactiveFormsModule,
+    EmployeesRoutingModule,
   ]
 })
 export class EmployeesModule { }

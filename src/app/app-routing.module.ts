@@ -7,7 +7,7 @@ const routes: Routes = [
     path:'',redirectTo:'employees', pathMatch:'full'
   },
   {
-    path:'', 
+    path:'employees', 
     loadChildren:()=> import('./employees/employees.module').then(m=>m.EmployeesModule)
   }
 ];

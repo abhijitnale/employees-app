@@ -1,1 +1,62 @@
-<p>add-employee works!</p>
+<div class="container my-4">
+    <a [routerLink]="['']">Employees</a>
+    <form [formGroup]="employeeForm" (ngSubmit)="save()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter name" id="name">
+            <div class="text-danger"
+                *ngIf="employeeForm.controls.name.invalid && (employeeForm.controls.name.touched || employeeForm.controls.name.dirty)">
+                <div *ngIf="employeeForm.controls.name.hasError('required')">
+                    <small>Name is required</small>
+                </div>
+                <div
+                    *ngIf="!employeeForm.controls.name.hasError('required') && employeeForm.controls.name.hasError('minlength')">
+                    <small>Name should be minimum 4 characters</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" [OnlyNumber]="true" class="form-control" formControlName="phone"
+                placeholder="Enter phone number" id="phone">
+            <div class="text-danger"
+                *ngIf="employeeForm.controls.phone.invalid && (employeeForm.controls.phone.touched || employeeForm.controls.phone.dirty)">
+                <div *ngIf="employeeForm.controls.phone.hasError('required')">
+                    <small>Phone number is required</small>
+                </div>
+                <div
+                    *ngIf="!employeeForm.controls.phone.hasError('required') && employeeForm.controls.phone.hasError('pattern')">
+                    <small>Enter valid phone number</small>
+                </div>
+            </div>
+        </div>
+
+        <ng-container formGroupName="address">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" formControlName="city" placeholder="Enter city" id="city">
+            </div>
+
+            <div class="form-group">
+                <label for="address_line1">Address 1</label>
+                <input type="text" class="form-control" formControlName="address_line1"
+                    placeholder="Enter address line 1" id="name">
+            </div>
+
+            <div class="form-group">
+                <label for="address_line2">Address 2</label>
+                <input type="text" class="form-control" formControlName="address_line2"
+                    placeholder="Enter address line 2" id="name">
+            </div>
+
+            <div class="form-group">
+                <label for="postal_code">Postal Code</label>
+                <input type="text" class="form-control" formControlName="postal_code" placeholder="Enter postal code"
+                    id="name">
+            </div>
+        </ng-container>
+
+        <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Save</button>
+    </form>
+</div>

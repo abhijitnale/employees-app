@@ -1,6 +1,7 @@
 <div class="container py-4">
     <div class="my-2">
         <input type="text" name="term" placeholder="Search by name or city" (input)="search($event)"/>
+        <button (click)="addEmployee()" style="float:right">Add Employee</button>
     </div>
     <div class="table-responsive-sm">
         <table class="table table-bordered">
@@ -25,7 +26,7 @@
                     <td>{{employee.address?.address_line1}}</td>
                     <td>{{employee.address?.address_line2}}</td>
                     <td>{{employee.address?.postal_code}}</td>
-                    <td>Edit</td>
+                    <td><a style="cursor:pointer; color: blue; text-decoration: underline" (click)="redirectToUpdateEmployee(employee.id)">Edit</a></td>
                 </tr>
             </tbody>
         </table>

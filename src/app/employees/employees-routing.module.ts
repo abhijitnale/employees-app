@@ -10,7 +10,7 @@ const routes: Routes = [
     component: EmployeesComponent
   },
   {
-    path: '/add',
+    path: 'add',
     component: AddEmployeeComponent
   },
   {

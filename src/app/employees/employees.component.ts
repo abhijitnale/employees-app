@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmployeesService } from '../services/employees.service';
 import { Subscription, Observable } from 'rxjs';
 import { Employee } from './model/employee';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -15,7 +16,7 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   obsEmployess: Observable<Employee[]>;
   subEmployess: Subscription;
 
-  constructor(private employeeService: EmployeesService) {
+  constructor(private employeeService: EmployeesService, private _router:Router) {
     this.obsEmployess = this.employeeService.getEmployees();
   }
 
@@ -41,6 +42,14 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     else {
       this.employeesArray = this.employeesArrayOriginal;
     }
+  }
+
+  addEmployee(){
+    this._router.navigate(['/employees/add'])
+  }
+
+  redirectToUpdateEmployee(id){
+    this._router.navigate([`/employees/${id}/edit`]);
   }
 
   ngOnDestroy() {
